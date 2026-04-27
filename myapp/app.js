@@ -17,6 +17,10 @@ app.get('/time', (req, res) => {
   res.send('現在時刻：' + now);
 });
 
+app.get("/api/test", (req, res) => {
+  res.json({ message: "APIが動いています", status: "ok" });
+});
+
 app.listen(3000, () => {
   console.log('サーバーが起動しました: http://localhost:3000');
 });
