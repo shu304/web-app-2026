@@ -21,6 +21,21 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "APIが動いています", status: "ok" });
 });
 
+const messages = [];
+
+// GET：メッセージ一覧を取得
+app.get("/api/messages", (req, res) => {
+  res.json(messages);
+});
+
+// POST：メッセージを追加
+app.post("/api/messages", (req, res) => {
+  const { username, text } = req.body;
+  const newMessage = { id: messages.length + 1, username, text };
+  messages.push(newMessage);
+  res.json(newMessage);
+});
+
 app.listen(3000, () => {
   console.log('サーバーが起動しました: http://localhost:3000');
 });
