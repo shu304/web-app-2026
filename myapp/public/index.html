@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>POSTテスト</title>
+</head>
+<body>
+  <h1>メッセージ送信</h1>
+
+  <input type="text" id="username" placeholder="名前">
+  <input type="text" id="message" placeholder="メッセージ">
+  <button onclick="sendData()">送信</button>
+
+  <script>
+    async function sendData() {
+      const username = document.getElementById('username').value;
+      const message = document.getElementById('message').value;
+
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, message })
+      });
+
+      const data = await response.json();
+      console.log(data);
+    }
+  </script>
+</body>
+</html>
